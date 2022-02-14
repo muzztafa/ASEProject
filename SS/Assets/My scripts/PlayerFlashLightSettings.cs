@@ -16,6 +16,7 @@ public class PlayerFlashLightSettings : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         nightVisionOverlay.gameObject.SetActive(false);
         flashLight.gameObject.SetActive(false);    
     }
@@ -25,6 +26,7 @@ public class PlayerFlashLightSettings : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.N))
         {
+            
             if (nightVisionActive == false)
             {
                 MyVolume.profile = NightVision;
