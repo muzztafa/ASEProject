@@ -18,10 +18,10 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 9.5
+    value: 0.95
   threshold:
     overrideState: 1
-    value: 0.23
+    value: 0.32
   softKnee:
     overrideState: 1
     value: 0.75
@@ -100,7 +100,7 @@ MonoBehaviour:
     value: 1
   temperature:
     overrideState: 1
-    value: -46
+    value: -58
   tint:
     overrideState: 1
     value: -70
@@ -127,10 +127,10 @@ MonoBehaviour:
     value: -24
   mixerRedOutGreenIn:
     overrideState: 1
-    value: 48
+    value: 49
   mixerRedOutBlueIn:
     overrideState: 1
-    value: 85
+    value: -85
   mixerGreenOutRedIn:
     overrideState: 0
     value: 0
@@ -150,14 +150,14 @@ MonoBehaviour:
     overrideState: 0
     value: 100
   lift:
-    overrideState: 0
-    value: {x: 1, y: 1, z: 1, w: 0}
+    overrideState: 1
+    value: {x: 0.63385427, y: 0.7101984, z: 1, w: 0}
   gamma:
-    overrideState: 0
-    value: {x: 1, y: 1, z: 1, w: 0}
+    overrideState: 1
+    value: {x: 0.90510535, y: 1, z: 0.90736634, w: 0}
   gain:
-    overrideState: 0
-    value: {x: 1, y: 1, z: 1, w: 0}
+    overrideState: 1
+    value: {x: 0.39253834, y: 1, z: 0.37603068, w: 0}
   masterCurve:
     overrideState: 0
     value:
@@ -1446,13 +1446,13 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.3
+    value: 0.403
   size:
     overrideState: 1
-    value: 1
+    value: 1.22
   lumContrib:
     overrideState: 1
-    value: 0.8
+    value: 1
 --- !u!114 &8974852080353252277
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1480,13 +1480,13 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.4
+    value: 0.662
   smoothness:
     overrideState: 1
-    value: 0.08
+    value: 0.406
   roundness:
     overrideState: 1
-    value: 0.888
+    value: 0.495
   rounded:
     overrideState: 0
     value: 0
