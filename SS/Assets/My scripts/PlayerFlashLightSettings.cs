@@ -24,34 +24,52 @@ public class PlayerFlashLightSettings : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N))
+        if (SaveScript.BatteryPower > 0.0f)
         {
-            
-            if (nightVisionActive == false)
+            if (Input.GetKeyDown(KeyCode.N))
             {
-                MyVolume.profile = NightVision;
-                nightVisionActive = true;
-                nightVisionOverlay.gameObject.SetActive(true);
+
+                if (nightVisionActive == false)
+                {
+                    MyVolume.profile = NightVision;
+                    nightVisionActive = true;
+                    nightVisionOverlay.gameObject.SetActive(true);
+                    SaveScript.NightVisionLightOn = true;
+                }
+                else
+                {
+                    MyVolume.profile = Standard;
+                    nightVisionActive = false;
+                    nightVisionOverlay.gameObject.SetActive(false);
+                    SaveScript.NightVisionLightOn = false;
+                }
             }
-            else
+            if (Input.GetKeyDown(KeyCode.F))
             {
-                MyVolume.profile = Standard;
-                nightVisionActive = false;
-                nightVisionOverlay.gameObject.SetActive(false);
+                if (flashLightActive == false)
+                {
+                    flashLightActive = true;
+                    flashLight.gameObject.SetActive(true);
+                    SaveScript.FlashLightOn = true;
+                }
+                else
+                {
+                    flashLightActive = false;
+                    flashLight.gameObject.SetActive(false);
+                    SaveScript.FlashLightOn = false;
+                }
             }
         }
-        if (Input.GetKeyDown(KeyCode.F))
+        if (SaveScript.BatteryPower <= 0.0f)
         {
-            if (flashLightActive == false)
-            {
-                flashLightActive = true;
-                flashLight.gameObject.SetActive(true);
-            }
-            else
-            {
-                flashLightActive = false;
-                flashLight.gameObject.SetActive(false);
-            }
+            MyVolume.profile = Standard;
+            nightVisionActive = false;
+            nightVisionOverlay.gameObject.SetActive(false);
+            SaveScript.NightVisionLightOn = false;
+            flashLightActive = false;
+            flashLight.gameObject.SetActive(false);
+            SaveScript.FlashLightOn = false;
         }
+        
     }
 }
