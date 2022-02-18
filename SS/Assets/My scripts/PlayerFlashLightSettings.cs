@@ -1,3 +1,11 @@
+/*
+@PlayerFlashLightSettings.cs
+ This code is used to check the settings for night vision and flashlight. 
+ In this code it is first check whether the player has the battery power.
+ if yes then it will check for the input of the player if N is pressed than nightvision is enabled.
+ if F is pressed than flashlight is enabled.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,9 +32,9 @@ public class PlayerFlashLightSettings : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SaveScript.BatteryPower > 0.0f)
+        if (SaveScript.BatteryPower > 0.0f) // This will check if battery power is greater than 0
         {
-            if (Input.GetKeyDown(KeyCode.N))
+            if (Input.GetKeyDown(KeyCode.N))  // This will check if the N is pressed if yes than it will check if night vision is on if yes than it will switch it off else it will turn on.
             {
 
                 if (nightVisionActive == false)
@@ -44,7 +52,7 @@ public class PlayerFlashLightSettings : MonoBehaviour
                     SaveScript.NightVisionLightOn = false;
                 }
             }
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.F)) // This will check if the F is pressed if yes than it will check if flashlight is on if yes than it will switch it off else it will turn on.
             {
                 if (flashLightActive == false)
                 {
@@ -60,7 +68,7 @@ public class PlayerFlashLightSettings : MonoBehaviour
                 }
             }
         }
-        if (SaveScript.BatteryPower <= 0.0f)
+        if (SaveScript.BatteryPower <= 0.0f) // Checks if battery power is less tha 0 than it will turn of the nightvision and flashlight
         {
             MyVolume.profile = Standard;
             nightVisionActive = false;

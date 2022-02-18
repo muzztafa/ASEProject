@@ -1,3 +1,7 @@
+/*
+ FirstPersonController.cs
+ The below code is to define the first player's various attributes such as speed, gravity, camera Rotation (from first person veiw).
+ */
 using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
@@ -11,14 +15,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
     [RequireComponent(typeof (AudioSource))]
     public class FirstPersonController : MonoBehaviour
     {
-        [SerializeField] private bool m_IsWalking;
-        [SerializeField] private float m_WalkSpeed;
-        [SerializeField] private float m_RunSpeed;
-        [SerializeField] [Range(0f, 1f)] private float m_RunstepLenghten;
-        [SerializeField] private float m_JumpSpeed;
+        [SerializeField] private bool m_IsWalking;  // this variable is used to check if the player is walking or not
+        [SerializeField] private float m_WalkSpeed; // this variable is used to set the walkspeed of the player
+        [SerializeField] private float m_RunSpeed; // this variable is used to set the run speed of the player
+        [SerializeField] [Range(0f, 1f)] private float m_RunstepLenghten; // this variable is used to set the run length of the player
+        [SerializeField] private float m_JumpSpeed; // this variable is used to set the jump speed of the player
         [SerializeField] private float m_StickToGroundForce;
-        [SerializeField] private float m_GravityMultiplier;
-        [SerializeField] private MouseLook m_MouseLook;
+        [SerializeField] private float m_GravityMultiplier; // this variable is used to set the gravity of the player
+        [SerializeField] private MouseLook m_MouseLook;  // this variable is used for Mouse Rotation
         [SerializeField] private bool m_UseFovKick;
         [SerializeField] private FOVKick m_FovKick = new FOVKick();
         [SerializeField] private bool m_UseHeadBob;
@@ -31,7 +35,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private Camera m_Camera;
         private bool m_Jump;
-        private float m_YRotation;
+        //private float m_YRotation;
         private Vector2 m_Input;
         private Vector3 m_MoveDir = Vector3.zero;
         private CharacterController m_CharacterController;
@@ -43,8 +47,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
-        // Use this for initialization
-        private void Start()
+        // This function is used to initialize the variables 
+        private void Start()  
         {
             m_CharacterController = GetComponent<CharacterController>();
             m_Camera = Camera.main;
@@ -60,7 +64,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 
         // Update is called once per frame
-        private void Update()
+        private void Update() // This function is to check if the user has given any jumo instruction and also set the mouse cursor movement
         {
             RotateView();
             // the jump state needs to read here to make sure it is not missed
@@ -69,7 +73,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
             }
 
-            if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
+            if (!m_PreviouslyGrounded && m_CharacterController.isGrounded) 
             {
                 StartCoroutine(m_JumpBob.DoBobCycle());
                 PlayLandingSound();
@@ -85,7 +89,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
 
-        private void PlayLandingSound()
+        private void PlayLandingSound()  // This function is used to play the sound when the player lands in the ground after a jump
         {
             m_AudioSource.clip = m_LandSound;
             m_AudioSource.Play();
@@ -93,7 +97,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
 
-        private void FixedUpdate()
+        private void FixedUpdate() // This function is set to check all the instructions which are given by the user and act accordingly whether it is jump the movement of the user as well as the introducing the sound of while player jump
         {
             float speed;
             GetInput(out speed);
@@ -135,14 +139,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
 
-        private void PlayJumpSound()
+        private void PlayJumpSound()    // This function is used to play the sound when the player jumps from the ground.
         {
             m_AudioSource.clip = m_JumpSound;
             m_AudioSource.Play();
         }
 
 
-        private void ProgressStepCycle(float speed)
+        private void ProgressStepCycle(float speed) // This function will be help user move in the direction as per the input from the user according to the speed
         {
             if (m_CharacterController.velocity.sqrMagnitude > 0 && (m_Input.x != 0 || m_Input.y != 0))
             {
@@ -161,7 +165,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
 
-        private void PlayFootStepAudio()
+        private void PlayFootStepAudio() // This function is used to play the sound when the player walking or running in the ground. There can be multiple sounds in an array and randomly one of them plays while there is movement of the player.
         {
             if (!m_CharacterController.isGrounded)
             {
@@ -181,7 +185,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
 
-        private void UpdateCameraPosition(float speed)
+        private void UpdateCameraPosition(float speed) // this function is used to update the position of the camera depending on the player movement it will move accordingly in the same direction and same position.
         {
             Vector3 newCameraPosition;
             if (!m_UseHeadBob)
@@ -205,7 +209,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
 
-        private void GetInput(out float speed)
+        private void GetInput(out float speed) // This function is used to read the input from the user.
         {
             // Read input
             float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
@@ -238,13 +242,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
 
-        private void RotateView()
+        private void RotateView() // This function is used for the rotation of the camera
         {
             m_MouseLook.LookRotation (transform, m_Camera.transform);
         }
 
 
-        private void OnControllerColliderHit(ControllerColliderHit hit)
+        private void OnControllerColliderHit(ControllerColliderHit hit) // This function is used to check the collider in front of the player and act accordingly.
         {
             Rigidbody body = hit.collider.attachedRigidbody;
             //dont move the rigidbody if the character is on top of it
