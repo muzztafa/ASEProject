@@ -13,10 +13,10 @@ public class GhostAttack : MonoBehaviour
     private bool isChecking = true;
     private int FailedChecks = 0;
 
-    [SerializeField] Transform Player;
-    [SerializeField] Animator Anim;
-    [SerializeField] GameObject Enemy;
-    [SerializeField] float MaxRange = 35f;
+    [SerializeField] Transform Player; //this is the FPS controller
+    [SerializeField] Animator Anim; //this is the controller that handles our animations
+    [SerializeField] GameObject Enemy; //this is the parasite
+    [SerializeField] float MaxRange = 40f; //the range in which enemy can see our player
     [SerializeField] int MaxChecks = 3;
     [SerializeField] float chaseSpeed = 8.5f;
     [SerializeField] float walkSpeed = 1.5f;
@@ -27,6 +27,7 @@ public class GhostAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //navmeshagent is the parent parasite
         Nav = GetComponentInParent<NavMeshAgent>();
 
     }
@@ -42,6 +43,7 @@ public class GhostAttack : MonoBehaviour
             {
                 isChecking = false;
 
+                //check whether the enemy can see our player in the navmesh
                 blocked = NavMesh.Raycast(transform.position, Player.position, out hit, NavMesh.AllAreas);
 
                 if (blocked == false)
@@ -56,12 +58,14 @@ public class GhostAttack : MonoBehaviour
                     Anim.SetInteger("State", 0);
                 }
 
+                //wait for a few seconds 
                 StartCoroutine(TimedCheck());
             }
         }
 
         if (RunToPlyaer == true)
         {
+            //if enemy is far from player, run to player
             if (DistanceToPlayer > attachDistance)
             {
                 Nav.isStopped = false;
@@ -71,6 +75,7 @@ public class GhostAttack : MonoBehaviour
                 Nav.speed = chaseSpeed;
             }
 
+            //if enemy is close to player, attack
             if (DistanceToPlayer < attachDistance)
             {
                 Nav.isStopped = true;
