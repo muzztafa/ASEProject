@@ -15,13 +15,15 @@ public class PickupScript : MonoBehaviour
     RaycastHit hit;
     [SerializeField] float Distance = 5.0f; // Defines the distance between the object and player from where player can pickup. 
     [SerializeField] GameObject PickupMessage;
+    [SerializeField] GameObject PlayerArms;
 
     float rayDistance;
     bool canSeePickup=false;
     // Start is called before the first frame update
     void Start()
     {
-        PickupMessage.gameObject.SetActive(false); // this inactivate the pickup object display.
+        PickupMessage.gameObject.SetActive(false);
+	PlayerArms.gameObject.SetActive(false); // this inactivate the pickup object display.
         rayDistance = Distance;       
     }
 

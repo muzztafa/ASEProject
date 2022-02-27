@@ -6,6 +6,17 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField] GameObject InventoryMenu;
     bool InventoryActive = false;
+    private AudioSource MyPlayer;
+    //[SerializeField] AudioClip WeaponChange;
+    [SerializeField] AudioClip GunShot;
+
+    [SerializeField] GameObject PlayerArms;
+    [SerializeField] GameObject Knife;
+    [SerializeField] GameObject Axe;
+    [SerializeField] GameObject Gun;
+
+    [SerializeField] Animator Anim;
+
     //Apple
     [SerializeField] GameObject appleImage;
     [SerializeField] GameObject appleButton;
@@ -32,6 +43,9 @@ public class Inventory : MonoBehaviour
         InventoryMenu.gameObject.SetActive(false);
         InventoryActive = false;
         Cursor.visible = false;
+        MyPlayer = GetComponent<AudioSource>();
+
+
         appleImage.gameObject.SetActive(false);
         appleButton.gameObject.SetActive(false);
         appleImage1.gameObject.SetActive(false);
@@ -63,6 +77,8 @@ public class Inventory : MonoBehaviour
                 InventoryActive = true;
                 Time.timeScale = 0f;
                 Cursor.visible = true;
+                SaveScript.HaveKnife = false;
+                SaveScript.HaveAxe = false;
             }
             else if(InventoryActive==true)
             {
@@ -148,5 +164,42 @@ public class Inventory : MonoBehaviour
         SaveScript.Apples -= 1;
         appleImage.gameObject.SetActive(false);
         appleButton.gameObject.SetActive(false);
+    }
+
+	public void AssignKnife()
+    {
+        PlayerArms.gameObject.SetActive(true);
+        Knife.gameObject.SetActive(true);
+        Anim.SetBool("Melee", true);
+        //MyPlayer.clip = WeaponChange;
+        //MyPlayer.Play();
+        SaveScript.HaveKnife = true;
+        SaveScript.HaveAxe = false;
+    }
+
+    public void AssignAxe()
+    {
+        PlayerArms.gameObject.SetActive(true);
+        Axe.gameObject.SetActive(true);
+        Anim.SetBool("Melee", true);
+        //MyPlayer.clip = WeaponChange;
+        //MyPlayer.Play();
+        SaveScript.HaveKnife = false;
+        SaveScript.HaveAxe = true;
+    }
+
+    public void AssignGun()
+    {
+        PlayerArms.gameObject.SetActive(true);
+        Gun.gameObject.SetActive(true);
+        Anim.SetBool("Melee", false);
+        MyPlayer.clip = GunShot;
+        MyPlayer.Play();
+    }
+
+    public void WeaponsOff()
+    {
+        Axe.gameObject.SetActive(false);
+        Knife.gameObject.SetActive(false);
     }
 }
