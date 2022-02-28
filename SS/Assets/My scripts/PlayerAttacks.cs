@@ -6,35 +6,61 @@ public class PlayerAttacks : MonoBehaviour
 
     private Animator Anim;
 
+    //to stop the spam of attacks we are limiting the attack with adding stamina
+    private float AttackStamina;
+    [SerializeField] float MaxAttackStamina = 10;
+    [SerializeField] float AttackDrain = 2;
+    [SerializeField] float AttackRefill = 1;
+
     void Start()
     {
         Anim = GetComponent<Animator>();
+        AttackStamina = MaxAttackStamina;
         
     }
 
     void Update()
     {
-        if(SaveScript.HaveAxe == true)
+        
+        if(AttackStamina < MaxAttackStamina)
         {
-            if(Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                Anim.SetTrigger("AxeLMB");
-            }
-            if (Input.GetKeyDown(KeyCode.Mouse1))
-            {
-                Anim.SetTrigger("AxeRMB");
-            }
+            AttackStamina += AttackRefill * Time.deltaTime;
         }
 
-        if (SaveScript.HaveKnife == true)
+        //This will allow the stamina to not to go below 0
+        if(AttackStamina <= 0.1)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            AttackStamina = 0.1f;
+        }
+
+        if (AttackStamina > 3.0)
+        {
+            if (SaveScript.HaveAxe == true)
             {
-                Anim.SetTrigger("KnifeLMB");
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    Anim.SetTrigger("AxeLMB");
+                    AttackStamina -= AttackDrain;
+                }
+                if (Input.GetKeyDown(KeyCode.Mouse1))
+                {
+                    Anim.SetTrigger("AxeRMB");
+                    AttackStamina -= AttackDrain;
+                }
             }
-            if (Input.GetKeyDown(KeyCode.Mouse1))
+
+            if (SaveScript.HaveKnife == true)
             {
-                Anim.SetTrigger("KnifeRMB");
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    Anim.SetTrigger("KnifeLMB");
+                    AttackStamina -= AttackDrain;
+                }
+                if (Input.GetKeyDown(KeyCode.Mouse1))
+                {
+                    Anim.SetTrigger("KnifeRMB");
+                    AttackStamina -= AttackDrain;
+                }
             }
         }
     }

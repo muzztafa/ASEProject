@@ -8,7 +8,7 @@ public class GhostAttack : MonoBehaviour
     private NavMeshAgent Nav;
     private NavMeshHit hit;
     private bool blocked = false;
-    private bool RunToPlyaer = false;
+    private bool RunToPlayer = false;
     private float DistanceToPlayer;
     private bool isChecking = true;
     private int FailedChecks = 0;
@@ -49,12 +49,12 @@ public class GhostAttack : MonoBehaviour
                 if (blocked == false)
                 {
                     Debug.Log("Player VISIBLE");
-                    RunToPlyaer = true;
+                    RunToPlayer = true;
                 }
                 if (blocked == true)
                 {
-                    Debug.Log("NOT VISIBLe");
-                    RunToPlyaer = false;
+                    Debug.Log("NOT VISIBLE");
+                    RunToPlayer = false;
                     Anim.SetInteger("State", 0);
                 }
 
@@ -63,7 +63,7 @@ public class GhostAttack : MonoBehaviour
             }
         }
 
-        if (RunToPlyaer == true)
+        if (RunToPlayer == true)
         {
             //if enemy is far from player, run to player
             if (DistanceToPlayer > attachDistance)
@@ -79,17 +79,30 @@ public class GhostAttack : MonoBehaviour
             if (DistanceToPlayer < attachDistance)
             {
                 Nav.isStopped = true;
-                Debug.Log("I am attacking");
+               // Debug.Log("I am attacking");
                 Anim.SetInteger("State", 2);
                 Nav.acceleration = 180;
             }
         }
-        else if (RunToPlyaer == false)
+        else if (RunToPlayer == false)
         {
             Nav.isStopped = true;
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            RunToPlayer = true;
+        }
+/*
+        if (other.gameObject.CompareTag("Knife"))
+        {
+            Anim.SetTrigger("SmallReact");
+        }
+*/
+    }
     IEnumerator TimedCheck()
     {
         yield return new WaitForSeconds(checkTime);
