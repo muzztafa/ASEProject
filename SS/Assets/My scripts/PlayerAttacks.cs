@@ -32,7 +32,7 @@ public class PlayerAttacks : MonoBehaviour
         {
             AttackStamina = 0.1f;
         }
-
+        //When ever the stamina will be greater than zero and player press mouse 0 or 1 it will drain some stamina
         if (AttackStamina > 3.0)
         {
             if (SaveScript.HaveAxe == true)

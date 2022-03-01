@@ -11,6 +11,9 @@ TagManager:
   - Mace
   - Gun
   - Axe
+  - PKnife
+  - PAxe
+  - PGun
   layers:
   - Default
   - TransparentFX

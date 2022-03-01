@@ -96,12 +96,16 @@ public class GhostAttack : MonoBehaviour
         {
             RunToPlayer = true;
         }
-/*
-        if (other.gameObject.CompareTag("Knife"))
+
+        if (other.gameObject.CompareTag("PKnife"))
         {
             Anim.SetTrigger("SmallReact");
         }
-*/
+
+        if (other.gameObject.CompareTag("PAxe"))
+        {
+            Anim.SetTrigger("SmallReact");
+        }
     }
     IEnumerator TimedCheck()
     {
