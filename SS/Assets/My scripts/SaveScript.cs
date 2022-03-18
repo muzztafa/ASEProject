@@ -13,7 +13,7 @@ using UnityEngine;
 
 public class SaveScript : MonoBehaviour
 {
-    public static int PlayerHealth = 10; // Thus variable will be used as Player Health
+    public static int PlayerHealth = 100; // Thus variable will be used as Player Health
     public static bool HealthChanged = false; // This variable is refered if health of the player is updated
     public static float BatteryPower = 1.0f; // This is the initial value of Battery Power
     public static bool FlashLightOn = false; // Initally the Flashlight will be off.
