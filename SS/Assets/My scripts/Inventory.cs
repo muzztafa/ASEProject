@@ -125,6 +125,16 @@ public class Inventory : MonoBehaviour
             appleButton5.gameObject.SetActive(true);
         }
     }
+
+    public void HealthUpdate()
+    {
+        SaveScript.PlayerHealth += 10;
+        SaveScript.HealthChanged = true;
+
+        appleImage1.gameObject.SetActive(false);
+        appleButton1.gameObject.SetActive(false);
+    }
+
     void checkWeapons()
     {
         if(SaveScript.knife == true)
