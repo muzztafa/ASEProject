@@ -37,6 +37,9 @@ public class Inventory : MonoBehaviour
     [SerializeField] GameObject axeButton;
     [SerializeField] GameObject gunImage;
     [SerializeField] GameObject gunButton;
+    [SerializeField] GameObject crossBowImage;
+    [SerializeField] GameObject crossBowButton;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -64,6 +67,9 @@ public class Inventory : MonoBehaviour
         axeImage.gameObject.SetActive(false);
         gunImage.gameObject.SetActive(false);
         gunButton.gameObject.SetActive(false);
+        crossBowImage.gameObject.SetActive(false);
+        crossBowButton.gameObject.SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -166,6 +172,15 @@ public class Inventory : MonoBehaviour
             gunImage.gameObject.SetActive(false);
             gunButton.gameObject.SetActive(false);
         }
+        if(SaveScript.reward >= 150){
+            crossBowImage.gameObject.SetActive(true);
+            crossBowButton.gameObject.SetActive(true);
+        }
+        else if (SaveScript.crossBow < 150)
+        {
+            crossBowImage.gameObject.SetActive(false);
+            crossBowButton.gameObject.SetActive(false);
+        }
     }
     public void updateHealth()
     {
@@ -185,6 +200,7 @@ public class Inventory : MonoBehaviour
         //MyPlayer.Play();
         SaveScript.HaveKnife = true;
         SaveScript.HaveAxe = false;
+        SaveScript.HaveGun = false;
     }
 
     public void AssignAxe()
@@ -196,20 +212,25 @@ public class Inventory : MonoBehaviour
         //MyPlayer.Play();
         SaveScript.HaveKnife = false;
         SaveScript.HaveAxe = true;
+        SaveScript.HaveGun = false;
     }
 
     public void AssignGun()
     {
         PlayerArms.gameObject.SetActive(true);
         Gun.gameObject.SetActive(true);
-        Anim.SetBool("Melee", false);
-        MyPlayer.clip = GunShot;
-        MyPlayer.Play();
+        Anim.SetBool("Melee", true);
+        //MyPlayer.clip = GunShot;
+        //MyPlayer.Play();
+        SaveScript.HaveKnife = false;
+        SaveScript.HaveAxe = false;
+        SaveScript.HaveGun = true;
     }
 
     public void WeaponsOff()
     {
         Axe.gameObject.SetActive(false);
         Knife.gameObject.SetActive(false);
+        
     }
 }
