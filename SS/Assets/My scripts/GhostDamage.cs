@@ -32,6 +32,7 @@ public class GhostDamage : MonoBehaviour
                 Anim.SetBool("IsDead", true);
                 HasDied = true;
                 Destroy(GhostObject, 25f);
+                SaveScript.reward += 50;
             }
         }
         
