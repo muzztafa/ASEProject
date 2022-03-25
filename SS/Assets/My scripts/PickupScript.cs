@@ -23,7 +23,7 @@ public class PickupScript : MonoBehaviour
     void Start()
     {
         PickupMessage.gameObject.SetActive(false);
-	PlayerArms.gameObject.SetActive(false); // this inactivate the pickup object display.
+	    PlayerArms.gameObject.SetActive(false); // this inactivate the pickup object display.
         rayDistance = Distance;       
     }
 

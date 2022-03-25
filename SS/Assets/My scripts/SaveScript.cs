@@ -25,6 +25,7 @@ public class SaveScript : MonoBehaviour
     public static bool crossbow = false;
     public static bool HaveKnife = false;
     public static bool HaveAxe = false;
+    public static bool HaveGun = false;
     public static bool HaveCrossBow = false;
     public static int reward = 0;
     /*public static bool Knife = false;
