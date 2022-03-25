@@ -13,6 +13,7 @@ TagManager:
   - PKnife
   - PAxe
   - PGun
+  - Crossbow
   layers:
   - Default
   - TransparentFX

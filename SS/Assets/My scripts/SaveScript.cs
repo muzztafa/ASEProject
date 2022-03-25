@@ -22,6 +22,7 @@ public class SaveScript : MonoBehaviour
     public static bool axe = false; // This variable is to check if axe is been picked up or not
     public static bool gun = false; // This variable is to check if gun is been picked up or not
     public static int Apples = 0; // This variable is to check how many apples are picked.
+    public static bool crossbow = false;
     public static bool HaveKnife = false;
     public static bool HaveAxe = false;
     public static int reward = 0;
