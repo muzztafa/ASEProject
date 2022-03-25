@@ -14,7 +14,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] GameObject Knife;
     [SerializeField] GameObject Axe;
     [SerializeField] GameObject Gun;
-
+        [SerializeField] GameObject CrossBow;
     [SerializeField] Animator Anim;
 
     //Apple
@@ -37,6 +37,9 @@ public class Inventory : MonoBehaviour
     [SerializeField] GameObject axeButton;
     [SerializeField] GameObject gunImage;
     [SerializeField] GameObject gunButton;
+    [SerializeField] GameObject crossbowImage;
+    [SerializeField] GameObject crossbowButton;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,6 +67,8 @@ public class Inventory : MonoBehaviour
         axeImage.gameObject.SetActive(false);
         gunImage.gameObject.SetActive(false);
         gunButton.gameObject.SetActive(false);
+        crossbowImage.gameObject.SetActive(false);
+        crossbowButton.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -79,6 +84,7 @@ public class Inventory : MonoBehaviour
                 Cursor.visible = true;
                 SaveScript.HaveKnife = false;
                 SaveScript.HaveAxe = false;
+                SaveScript.HaveCrossBow = false;
             }
             else if(InventoryActive==true)
             {
@@ -165,6 +171,17 @@ public class Inventory : MonoBehaviour
         {
             gunImage.gameObject.SetActive(false);
             gunButton.gameObject.SetActive(false);
+        }
+    
+        if (SaveScript.crossbow == true)
+        {
+            crossbowImage.gameObject.SetActive(true);
+            crossbowButton.gameObject.SetActive(true);
+        }
+        else if (SaveScript.crossbow == false)
+        {
+            crossbowImage.gameObject.SetActive(false);
+            crossbowButton.gameObject.SetActive(false);
         }
     }
     public void updateHealth()
