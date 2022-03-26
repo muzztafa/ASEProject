@@ -54,6 +54,8 @@ public class Inventory : MonoBehaviour
         InventoryMenu.gameObject.SetActive(false);
         Gunlogo.gameObject.SetActive(false);
         BulletAmt.gameObject.SetActive(false);
+        BowUI.gameObject.SetActive(false);
+        BowAmt.gameObject.SetActive(false);
 
         InventoryActive = false;
         Cursor.visible = false;

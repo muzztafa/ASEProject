@@ -12,6 +12,7 @@ public class PlayerAttacks : MonoBehaviour
     [SerializeField] float AttackDrain = 2;
     [SerializeField] float AttackRefill = 1;
     [SerializeField] GameObject Crosshair;
+    [SerializeField] GameObject GunCrossHair;
 
     private AudioSource MyPlayer;
     [SerializeField] AudioClip GunShotSound;
@@ -25,6 +26,8 @@ public class PlayerAttacks : MonoBehaviour
         Anim = GetComponent<Animator>();
         AttackStamina = MaxAttackStamina;
         Crosshair.gameObject.SetActive(false);
+        GunCrossHair.gameObject.SetActive(false);
+
         MyPlayer = GetComponent<AudioSource>();
     }
 
@@ -72,11 +75,12 @@ public class PlayerAttacks : MonoBehaviour
                 }
 
             }
+                       // 
 
-               if (SaveScript.HaveGun == true)
+
+            if (SaveScript.HaveGun == true)
             {
-            Crosshair.gameObject.SetActive(true);
-
+                GunCrossHair.gameObject.SetActive(true);
                 if(Input.GetKeyDown(KeyCode.Mouse0))
                 {
                     if(SaveScript.Bullets>0)
@@ -90,8 +94,14 @@ public class PlayerAttacks : MonoBehaviour
             }
             if(SaveScript.HaveGun == false)
             {
-            Crosshair.gameObject.SetActive(false);
+                                GunCrossHair.gameObject.SetActive(false);
+
             }
+            
+            // else
+            // {
+            // Crosshair.gameObject.SetActive(false);
+            // }
 
 
             if (SaveScript.HaveCrossBow == true)
@@ -110,7 +120,7 @@ public class PlayerAttacks : MonoBehaviour
                 }
 
             }
-            if(SaveScript.HaveCrossBow == false)
+            else
             {
             Crosshair.gameObject.SetActive(false);
             }
