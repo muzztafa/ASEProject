@@ -19,6 +19,9 @@ public class GunShotScript : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.Mouse0))
             {
+
+                if(SaveScript.Bullets > 0)
+                {
                 if(Physics.Raycast(transform.position, transform.forward, out hit, 3000))
                 {
                     if(hit.transform.Find("Body"))
@@ -26,6 +29,7 @@ public class GunShotScript : MonoBehaviour
                         hit.transform.gameObject.GetComponentInChildren<EnemyDamage>().EnemyHealth -= Random.Range(30,101);
                         hit.transform.gameObject.GetComponent<Animator>().SetTrigger("BigReact");
                     }
+                }
                 }
             }
         }

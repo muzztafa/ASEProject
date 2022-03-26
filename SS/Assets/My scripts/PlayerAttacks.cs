@@ -15,6 +15,8 @@ public class PlayerAttacks : MonoBehaviour
 
     private AudioSource MyPlayer;
     [SerializeField] AudioClip GunShotSound;
+    [SerializeField] AudioClip ArrowShotSound;
+
 
 
 
@@ -77,12 +79,34 @@ public class PlayerAttacks : MonoBehaviour
 
                 if(Input.GetKeyDown(KeyCode.Mouse0))
                 {
+                    if(SaveScript.Bullets>0)
+                    {
                     MyPlayer.clip = GunShotSound;
                     MyPlayer.Play();
+                    }
+                   
                 }
 
             }
             if(SaveScript.HaveGun == false)
+            {
+            Crosshair.gameObject.SetActive(false);
+            }
+
+
+            if (SaveScript.HaveCrossBow == true)
+            {
+            Crosshair.gameObject.SetActive(true);
+
+                if(Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                     MyPlayer.clip = ArrowShotSound;
+                    MyPlayer.Play();
+                   
+                }
+
+            }
+            if(SaveScript.HaveCrossBow == false)
             {
             Crosshair.gameObject.SetActive(false);
             }

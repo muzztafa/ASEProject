@@ -277,4 +277,13 @@ public class Inventory : MonoBehaviour
         CrossBow.gameObject.SetActive(false);
 
     }
+
+    // public void AmmoRefill(){
+    //     SaveScript.BulletClips -= 1;
+    //     SaveScript.Bullets += 12;
+    //     if(SaveScript.Bullets > 12)
+    //     {
+    //         SaveScript.Bullets = 12;
+    //     }
+    // }
 }
