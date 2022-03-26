@@ -227,8 +227,8 @@ public class Inventory : MonoBehaviour
         PlayerArms.gameObject.SetActive(true);
         Gun.gameObject.SetActive(true);
         Anim.SetBool("Melee", false);
-        MyPlayer.clip = GunShot;
-        MyPlayer.Play();
+        // MyPlayer.clip = GunShot;
+        // MyPlayer.Play();
         // SaveScript.HaveKnife = false;
         // SaveScript.HaveAxe = false;
         // SaveScript.HaveGun = true;
@@ -240,8 +240,8 @@ public class Inventory : MonoBehaviour
         PlayerArms.gameObject.SetActive(true);
         CrossBow.gameObject.SetActive(true);
         Anim.SetBool("Melee", false);
-        MyPlayer.clip = ArrowShot;
-        MyPlayer.Play();
+        // MyPlayer.clip = ArrowShot;
+        // MyPlayer.Play();
         //      SaveScript.HaveKnife = false;
         // SaveScript.HaveAxe = false;
         // SaveScript.HaveGun = false;
