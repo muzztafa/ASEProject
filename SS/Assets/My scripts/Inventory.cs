@@ -200,8 +200,8 @@ public class Inventory : MonoBehaviour
         Anim.SetBool("Melee", true);
         //MyPlayer.clip = WeaponChange;
         //MyPlayer.Play();
-        // SaveScript.HaveKnife = true;
-        // SaveScript.HaveAxe = false;
+        SaveScript.HaveKnife = true;
+        SaveScript.HaveAxe = false;
         // SaveScript.HaveGun = false;
         // SaveScript.HaveCrossBow = false;
     }
@@ -213,10 +213,10 @@ public class Inventory : MonoBehaviour
         Anim.SetBool("Melee", true);
         //MyPlayer.clip = WeaponChange;
         //MyPlayer.Play();
-        //  SaveScript.HaveKnife = false;
-        // SaveScript.HaveAxe = true;
-        // SaveScript.HaveGun = false;
-        // SaveScript.HaveCrossBow = false;
+         SaveScript.HaveKnife = false;
+        SaveScript.HaveAxe = true;
+       // SaveScript.HaveGun = false;
+       // SaveScript.HaveCrossBow = false;
     }
 
     public void AssignGun()
