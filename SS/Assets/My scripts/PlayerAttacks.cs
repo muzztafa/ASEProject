@@ -83,6 +83,7 @@ public class PlayerAttacks : MonoBehaviour
                 GunCrossHair.gameObject.SetActive(true);
                 if(Input.GetKeyDown(KeyCode.Mouse0))
                 {
+                    Anim.SetBool("ShootGun", true);
                     if(SaveScript.Bullets>0)
                     {
                     MyPlayer.clip = GunShotSound;
@@ -90,6 +91,15 @@ public class PlayerAttacks : MonoBehaviour
                     }
                    
                 }
+                if(Input.GetKeyUp(KeyCode.Mouse0))
+                {
+                    Anim.SetBool("ShootGun", false);
+                    
+                   
+                }
+
+               
+                
 
             }
             if(SaveScript.HaveGun == false)
