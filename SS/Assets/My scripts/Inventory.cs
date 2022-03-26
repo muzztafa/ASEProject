@@ -204,13 +204,13 @@ public class Inventory : MonoBehaviour
         Knife.gameObject.SetActive(true);
         Anim.SetBool("Melee", true);
         Gun.gameObject.SetActive(false);
-        
+
         //MyPlayer.clip = WeaponChange;
         //MyPlayer.Play();
-        // SaveScript.HaveKnife = true;
-        // SaveScript.HaveAxe = false;
-        // SaveScript.HaveGun = false;
-        // SaveScript.HaveCrossBow = false;
+        SaveScript.HaveKnife = true;
+        SaveScript.HaveAxe = false;
+        SaveScript.HaveGun = false;
+        SaveScript.HaveCrossBow = false;
     }
 
     public void AssignAxe()
@@ -222,10 +222,10 @@ public class Inventory : MonoBehaviour
 
         //MyPlayer.clip = WeaponChange;
         //MyPlayer.Play();
-    //      SaveScript.HaveKnife = false;
-    //     SaveScript.HaveAxe = true;
-    //    SaveScript.HaveGun = false;
-    //    SaveScript.HaveCrossBow = false;
+         SaveScript.HaveKnife = false;
+        SaveScript.HaveAxe = true;
+       SaveScript.HaveGun = false;
+       SaveScript.HaveCrossBow = false;
     }
 
     public void AssignGun()
@@ -239,10 +239,10 @@ public class Inventory : MonoBehaviour
         // MyPlayer.clip = GunShot;
         // MyPlayer.Play();
         
-    //     SaveScript.HaveGun = true;
-    //    SaveScript.HaveCrossBow = false;
-    //    SaveScript.HaveKnife = false;
-    //     SaveScript.HaveAxe = false;
+        SaveScript.HaveGun = true;
+       SaveScript.HaveCrossBow = false;
+       SaveScript.HaveKnife = false;
+        SaveScript.HaveAxe = false;
     }
 
  public void AssignCrossbow()
@@ -252,10 +252,10 @@ public class Inventory : MonoBehaviour
         Anim.SetBool("Melee", false);
         // MyPlayer.clip = ArrowShot;
         // MyPlayer.Play();
-        // SaveScript.HaveKnife = false;
-        // SaveScript.HaveAxe = false;
-        // SaveScript.HaveGun = false;
-        // SaveScript.HaveCrossBow = true;
+        SaveScript.HaveKnife = false;
+        SaveScript.HaveAxe = false;
+        SaveScript.HaveGun = false;
+        SaveScript.HaveCrossBow = true;
     }
 
 

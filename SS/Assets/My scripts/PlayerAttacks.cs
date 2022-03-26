@@ -66,16 +66,15 @@ public class PlayerAttacks : MonoBehaviour
 
             }
 
-            //    if (SaveScript.HaveGun == true)
-            // {
-            // Crosshair.gameObject.SetActive(true);
+               if (SaveScript.HaveGun == true)
+            {
+            Crosshair.gameObject.SetActive(true);
 
-            // }
-            // if(SaveScript.HaveGun == false)
-            // {
-            // Crosshair.gameObject.SetActive(false);
-
-            // }
+            }
+            if(SaveScript.HaveGun == false)
+            {
+            Crosshair.gameObject.SetActive(false);
+            }
         
 
         }
