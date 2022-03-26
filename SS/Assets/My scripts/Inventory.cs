@@ -19,6 +19,8 @@ public class Inventory : MonoBehaviour
     [SerializeField] GameObject Gun;
     [SerializeField] GameObject CrossBow;
     [SerializeField] Animator Anim;
+    [SerializeField] GameObject Gunlogo;
+    [SerializeField] GameObject BulletAmt;
 
     //Apple
     [SerializeField] GameObject appleImage;
@@ -48,6 +50,9 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         InventoryMenu.gameObject.SetActive(false);
+        Gunlogo.gameObject.SetActive(false);
+        BulletAmt.gameObject.SetActive(false);
+
         InventoryActive = false;
         Cursor.visible = false;
         MyPlayer = GetComponent<AudioSource>();
@@ -90,6 +95,8 @@ public class Inventory : MonoBehaviour
                 SaveScript.HaveAxe = false;
                 SaveScript.HaveCrossBow = false;
                 SaveScript.HaveGun = false;
+                Gunlogo.gameObject.SetActive(false);
+                BulletAmt.gameObject.SetActive(false);
             }
             else if(InventoryActive==true)
             {
@@ -243,6 +250,9 @@ public class Inventory : MonoBehaviour
        SaveScript.HaveCrossBow = false;
        SaveScript.HaveKnife = false;
         SaveScript.HaveAxe = false;
+
+        Gunlogo.gameObject.SetActive(true);
+        BulletAmt.gameObject.SetActive(true);
     }
 
  public void AssignCrossbow()
