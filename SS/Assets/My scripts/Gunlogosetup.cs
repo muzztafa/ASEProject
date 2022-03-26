@@ -16,6 +16,8 @@ public class Gunlogosetup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+                BulletAmt.text = SaveScript.Bullets + "";
+
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
             if(SaveScript.Bullets > 0)

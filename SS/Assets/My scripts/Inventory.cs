@@ -21,6 +21,8 @@ public class Inventory : MonoBehaviour
     [SerializeField] Animator Anim;
     [SerializeField] GameObject Gunlogo;
     [SerializeField] GameObject BulletAmt;
+    [SerializeField] GameObject BowUI;
+    [SerializeField] GameObject BowAmt;
 
     //Apple
     [SerializeField] GameObject appleImage;
@@ -97,6 +99,8 @@ public class Inventory : MonoBehaviour
                 SaveScript.HaveGun = false;
                 Gunlogo.gameObject.SetActive(false);
                 BulletAmt.gameObject.SetActive(false);
+                BowUI.gameObject.SetActive(false);
+                BowAmt.gameObject.SetActive(false);
             }
             else if(InventoryActive==true)
             {
@@ -211,6 +215,8 @@ public class Inventory : MonoBehaviour
         Knife.gameObject.SetActive(true);
         Anim.SetBool("Melee", true);
         Gun.gameObject.SetActive(false);
+        Axe.gameObject.SetActive(false);
+        CrossBow.gameObject.SetActive(false);
 
         //MyPlayer.clip = WeaponChange;
         //MyPlayer.Play();
@@ -226,7 +232,8 @@ public class Inventory : MonoBehaviour
         Axe.gameObject.SetActive(true);
         Anim.SetBool("Melee", true);
         Gun.gameObject.SetActive(false);
-
+        Knife.gameObject.SetActive(false);
+        CrossBow.gameObject.SetActive(false);
         //MyPlayer.clip = WeaponChange;
         //MyPlayer.Play();
          SaveScript.HaveKnife = false;
@@ -242,7 +249,8 @@ public class Inventory : MonoBehaviour
         Anim.SetBool("Melee", false);
         Axe.gameObject.SetActive(false);
         Knife.gameObject.SetActive(false);
-
+        CrossBow.gameObject.SetActive(false);
+        
         // MyPlayer.clip = GunShot;
         // MyPlayer.Play();
         
@@ -260,12 +268,17 @@ public class Inventory : MonoBehaviour
         PlayerArms.gameObject.SetActive(true);
         CrossBow.gameObject.SetActive(true);
         Anim.SetBool("Melee", false);
+        Axe.gameObject.SetActive(false);
+        Knife.gameObject.SetActive(false);
+        Gun.gameObject.SetActive(false);
         // MyPlayer.clip = ArrowShot;
         // MyPlayer.Play();
         SaveScript.HaveKnife = false;
         SaveScript.HaveAxe = false;
         SaveScript.HaveGun = false;
         SaveScript.HaveCrossBow = true;
+          BowUI.gameObject.SetActive(true);
+                BowAmt.gameObject.SetActive(true);
     }
 
 

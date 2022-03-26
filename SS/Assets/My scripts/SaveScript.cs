@@ -30,6 +30,8 @@ public class SaveScript : MonoBehaviour
     public static int reward = 0;
     public static bool ArrowRefill = false;
     public static int Bullets = 10;
+    public static int Arrows = 4;
+
     /*public static bool Knife = false;
     public static bool Gun = false;
     public static bool Axe = false;

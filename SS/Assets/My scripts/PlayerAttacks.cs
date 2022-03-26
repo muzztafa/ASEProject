@@ -100,8 +100,12 @@ public class PlayerAttacks : MonoBehaviour
 
                 if(Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                     MyPlayer.clip = ArrowShotSound;
+                    if(SaveScript.Arrows > 0)
+                    {
+                    MyPlayer.clip = ArrowShotSound;
                     MyPlayer.Play();
+                    }
+                     
                    
                 }
 

@@ -23,5 +23,11 @@ public class EnemyDamage : MonoBehaviour
         {
             EnemyHealth -= 50;  
         }
+
+        if(other.gameObject.CompareTag("Crossbow"))
+        {
+            EnemyHealth -= 100; 
+
+        }
     }
 }
