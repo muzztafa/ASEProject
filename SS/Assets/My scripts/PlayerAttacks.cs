@@ -11,12 +11,14 @@ public class PlayerAttacks : MonoBehaviour
     [SerializeField] float MaxAttackStamina = 10;
     [SerializeField] float AttackDrain = 2;
     [SerializeField] float AttackRefill = 1;
+    [SerializeField] GameObject Crosshair;
+
 
     void Start()
     {
         Anim = GetComponent<Animator>();
         AttackStamina = MaxAttackStamina;
-        
+        Crosshair.gameObject.SetActive(false);
     }
 
     void Update()
@@ -61,7 +63,21 @@ public class PlayerAttacks : MonoBehaviour
                     Anim.SetTrigger("KnifeRMB");
                     AttackStamina -= AttackDrain;
                 }
+
             }
+
+            //    if (SaveScript.HaveGun == true)
+            // {
+            // Crosshair.gameObject.SetActive(true);
+
+            // }
+            // if(SaveScript.HaveGun == false)
+            // {
+            // Crosshair.gameObject.SetActive(false);
+
+            // }
+        
+
         }
     }
 }
