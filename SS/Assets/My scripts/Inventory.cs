@@ -8,7 +8,10 @@ public class Inventory : MonoBehaviour
     bool InventoryActive = false;
     private AudioSource MyPlayer;
     //[SerializeField] AudioClip WeaponChange;
+
     [SerializeField] AudioClip GunShot;
+    [SerializeField] AudioClip ArrowShot;
+
 
     [SerializeField] GameObject PlayerArms;
     [SerializeField] GameObject Knife;
@@ -200,8 +203,8 @@ public class Inventory : MonoBehaviour
         Anim.SetBool("Melee", true);
         //MyPlayer.clip = WeaponChange;
         //MyPlayer.Play();
-        SaveScript.HaveKnife = true;
-        SaveScript.HaveAxe = false;
+        // SaveScript.HaveKnife = true;
+        // SaveScript.HaveAxe = false;
         // SaveScript.HaveGun = false;
         // SaveScript.HaveCrossBow = false;
     }
@@ -213,8 +216,8 @@ public class Inventory : MonoBehaviour
         Anim.SetBool("Melee", true);
         //MyPlayer.clip = WeaponChange;
         //MyPlayer.Play();
-         SaveScript.HaveKnife = false;
-        SaveScript.HaveAxe = true;
+        //  SaveScript.HaveKnife = false;
+        // SaveScript.HaveAxe = true;
        // SaveScript.HaveGun = false;
        // SaveScript.HaveCrossBow = false;
     }
@@ -224,8 +227,8 @@ public class Inventory : MonoBehaviour
         PlayerArms.gameObject.SetActive(true);
         Gun.gameObject.SetActive(true);
         Anim.SetBool("Melee", false);
-        // MyPlayer.clip = ;
-        // MyPlayer.Play();
+        MyPlayer.clip = GunShot;
+        MyPlayer.Play();
         // SaveScript.HaveKnife = false;
         // SaveScript.HaveAxe = false;
         // SaveScript.HaveGun = true;
@@ -237,8 +240,8 @@ public class Inventory : MonoBehaviour
         PlayerArms.gameObject.SetActive(true);
         CrossBow.gameObject.SetActive(true);
         Anim.SetBool("Melee", false);
-        // MyPlayer.clip = WeaponChange;
-        // MyPlayer.Play();
+        MyPlayer.clip = ArrowShot;
+        MyPlayer.Play();
         //      SaveScript.HaveKnife = false;
         // SaveScript.HaveAxe = false;
         // SaveScript.HaveGun = false;
