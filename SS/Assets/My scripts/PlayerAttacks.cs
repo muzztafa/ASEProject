@@ -13,12 +13,17 @@ public class PlayerAttacks : MonoBehaviour
     [SerializeField] float AttackRefill = 1;
     [SerializeField] GameObject Crosshair;
 
+    private AudioSource MyPlayer;
+    [SerializeField] AudioClip GunShotSound;
+
+
 
     void Start()
     {
         Anim = GetComponent<Animator>();
         AttackStamina = MaxAttackStamina;
         Crosshair.gameObject.SetActive(false);
+        MyPlayer = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -69,6 +74,12 @@ public class PlayerAttacks : MonoBehaviour
                if (SaveScript.HaveGun == true)
             {
             Crosshair.gameObject.SetActive(true);
+
+                if(Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    MyPlayer.clip = GunShotSound;
+                    MyPlayer.Play();
+                }
 
             }
             if(SaveScript.HaveGun == false)
