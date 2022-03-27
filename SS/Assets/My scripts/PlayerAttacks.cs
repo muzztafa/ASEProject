@@ -1,6 +1,10 @@
 
 using UnityEngine;
-
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine.Windows.Speech;
 public class PlayerAttacks : MonoBehaviour
 {
 
@@ -17,20 +21,44 @@ public class PlayerAttacks : MonoBehaviour
     private AudioSource MyPlayer;
     [SerializeField] AudioClip GunShotSound;
     [SerializeField] AudioClip ArrowShotSound;
-
-
-
-
+             
+    Dictionary<string, Action> keywordAction = new Dictionary<string, Action>();
+    KeywordRecognizer keywordRecognizer;
+    
     void Start()
     {
         Anim = GetComponent<Animator>();
         AttackStamina = MaxAttackStamina;
         Crosshair.gameObject.SetActive(false);
         GunCrossHair.gameObject.SetActive(false);
-
+        keywordAction.Add("shoot", shoot) ;
+        keywordRecognizer = new KeywordRecognizer(keywordAction.Keys.ToArray()); 
+        keywordRecognizer.OnPhraseRecognized += OnKeywordsRecognized;
+        
         MyPlayer = GetComponent<AudioSource>();
+        keywordRecognizer.Start();
     }
 
+             void OnKeywordsRecognized(PhraseRecognizedEventArgs Speech)
+             {
+                 Debug.Log("Keyword: " + Speech.text); 
+                 keywordAction[Speech.text].Invoke();
+             }
+             
+    void shoot()
+    {
+        Anim.SetTrigger("KnifeLMB");
+        AttackStamina -= AttackDrain;
+        
+        // Anim.SetBool("ShootGun", true)
+        // Debug.Log("Hi Shoot");
+        // if(SaveScript.Arrows > 0)
+        //    {
+
+        //              MyPlayer.clip = ArrowShotSound;
+        //              MyPlayer.Play();
+        // }
+    }
     void Update()
     {
         
@@ -108,32 +136,34 @@ public class PlayerAttacks : MonoBehaviour
 
             }
             
-            // else
-            // {
-            // Crosshair.gameObject.SetActive(false);
-            // }
+             else
+             {
+             Crosshair.gameObject.SetActive(false);
+             }
 
 
-            if (SaveScript.HaveCrossBow == true)
-            {
-            Crosshair.gameObject.SetActive(true);
+             if (SaveScript.HaveCrossBow == true)
+             {
+                Crosshair.gameObject.SetActive(true);
 
                 if(Input.GetKeyDown(KeyCode.Mouse0))
                 {
                     if(SaveScript.Arrows > 0)
-                    {
-                    MyPlayer.clip = ArrowShotSound;
-                    MyPlayer.Play();
-                    }
+                     {
+                     MyPlayer.clip = ArrowShotSound;
+                     MyPlayer.Play();
+                     }
                      
                    
-                }
+                 }
 
-            }
-            else
-            {
-            Crosshair.gameObject.SetActive(false);
-            }
+             }
+             else
+             {
+                Crosshair.gameObject.SetActive(false);
+             }   
+            
+            
         
 
         }
