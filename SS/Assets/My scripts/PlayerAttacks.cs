@@ -11,12 +11,24 @@ public class PlayerAttacks : MonoBehaviour
     [SerializeField] float MaxAttackStamina = 10;
     [SerializeField] float AttackDrain = 2;
     [SerializeField] float AttackRefill = 1;
+    [SerializeField] GameObject Crosshair;
+    [SerializeField] GameObject GunCrossHair;
+
+    private AudioSource MyPlayer;
+    [SerializeField] AudioClip GunShotSound;
+    [SerializeField] AudioClip ArrowShotSound;
+
+
+
 
     void Start()
     {
         Anim = GetComponent<Animator>();
         AttackStamina = MaxAttackStamina;
-        
+        Crosshair.gameObject.SetActive(false);
+        GunCrossHair.gameObject.SetActive(false);
+
+        MyPlayer = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -61,7 +73,69 @@ public class PlayerAttacks : MonoBehaviour
                     Anim.SetTrigger("KnifeRMB");
                     AttackStamina -= AttackDrain;
                 }
+
             }
+                       // 
+
+
+            if (SaveScript.HaveGun == true)
+            {
+                GunCrossHair.gameObject.SetActive(true);
+                if(Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    Anim.SetBool("ShootGun", true);
+                    if(SaveScript.Bullets>0)
+                    {
+                    MyPlayer.clip = GunShotSound;
+                    MyPlayer.Play();
+                    }
+                   
+                }
+                if(Input.GetKeyUp(KeyCode.Mouse0))
+                {
+                    Anim.SetBool("ShootGun", false);
+                    
+                   
+                }
+
+               
+                
+
+            }
+            if(SaveScript.HaveGun == false)
+            {
+                                GunCrossHair.gameObject.SetActive(false);
+
+            }
+            
+            // else
+            // {
+            // Crosshair.gameObject.SetActive(false);
+            // }
+
+
+            if (SaveScript.HaveCrossBow == true)
+            {
+            Crosshair.gameObject.SetActive(true);
+
+                if(Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    if(SaveScript.Arrows > 0)
+                    {
+                    MyPlayer.clip = ArrowShotSound;
+                    MyPlayer.Play();
+                    }
+                     
+                   
+                }
+
+            }
+            else
+            {
+            Crosshair.gameObject.SetActive(false);
+            }
+        
+
         }
     }
 }

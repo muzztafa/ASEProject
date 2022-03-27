@@ -8,14 +8,21 @@ public class Inventory : MonoBehaviour
     bool InventoryActive = false;
     private AudioSource MyPlayer;
     //[SerializeField] AudioClip WeaponChange;
+
     [SerializeField] AudioClip GunShot;
+    [SerializeField] AudioClip ArrowShot;
+
 
     [SerializeField] GameObject PlayerArms;
     [SerializeField] GameObject Knife;
     [SerializeField] GameObject Axe;
     [SerializeField] GameObject Gun;
-
+    [SerializeField] GameObject CrossBow;
     [SerializeField] Animator Anim;
+    [SerializeField] GameObject Gunlogo;
+    [SerializeField] GameObject BulletAmt;
+    [SerializeField] GameObject BowUI;
+    [SerializeField] GameObject BowAmt;
 
     //Apple
     [SerializeField] GameObject appleImage;
@@ -37,10 +44,19 @@ public class Inventory : MonoBehaviour
     [SerializeField] GameObject axeButton;
     [SerializeField] GameObject gunImage;
     [SerializeField] GameObject gunButton;
+    [SerializeField] GameObject crossbowImage;
+    [SerializeField] GameObject crossbowButton;
+
+
     // Start is called before the first frame update
     void Start()
     {
         InventoryMenu.gameObject.SetActive(false);
+        Gunlogo.gameObject.SetActive(false);
+        BulletAmt.gameObject.SetActive(false);
+        BowUI.gameObject.SetActive(false);
+        BowAmt.gameObject.SetActive(false);
+
         InventoryActive = false;
         Cursor.visible = false;
         MyPlayer = GetComponent<AudioSource>();
@@ -64,6 +80,8 @@ public class Inventory : MonoBehaviour
         axeImage.gameObject.SetActive(false);
         gunImage.gameObject.SetActive(false);
         gunButton.gameObject.SetActive(false);
+        crossbowImage.gameObject.SetActive(false);
+        crossbowButton.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -79,6 +97,12 @@ public class Inventory : MonoBehaviour
                 Cursor.visible = true;
                 SaveScript.HaveKnife = false;
                 SaveScript.HaveAxe = false;
+                SaveScript.HaveCrossBow = false;
+                SaveScript.HaveGun = false;
+                Gunlogo.gameObject.SetActive(false);
+                BulletAmt.gameObject.SetActive(false);
+                BowUI.gameObject.SetActive(false);
+                BowAmt.gameObject.SetActive(false);
             }
             else if(InventoryActive==true)
             {
@@ -166,6 +190,17 @@ public class Inventory : MonoBehaviour
             gunImage.gameObject.SetActive(false);
             gunButton.gameObject.SetActive(false);
         }
+    
+        if (SaveScript.crossbow == true)
+        {
+            crossbowImage.gameObject.SetActive(true);
+            crossbowButton.gameObject.SetActive(true);
+        }
+        else if (SaveScript.crossbow == false)
+        {
+            crossbowImage.gameObject.SetActive(false);
+            crossbowButton.gameObject.SetActive(false);
+        }
     }
     public void updateHealth()
     {
@@ -181,10 +216,16 @@ public class Inventory : MonoBehaviour
         PlayerArms.gameObject.SetActive(true);
         Knife.gameObject.SetActive(true);
         Anim.SetBool("Melee", true);
+        Gun.gameObject.SetActive(false);
+        Axe.gameObject.SetActive(false);
+        CrossBow.gameObject.SetActive(false);
+
         //MyPlayer.clip = WeaponChange;
         //MyPlayer.Play();
         SaveScript.HaveKnife = true;
         SaveScript.HaveAxe = false;
+        SaveScript.HaveGun = false;
+        SaveScript.HaveCrossBow = false;
     }
 
     public void AssignAxe()
@@ -192,10 +233,15 @@ public class Inventory : MonoBehaviour
         PlayerArms.gameObject.SetActive(true);
         Axe.gameObject.SetActive(true);
         Anim.SetBool("Melee", true);
+        Gun.gameObject.SetActive(false);
+        Knife.gameObject.SetActive(false);
+        CrossBow.gameObject.SetActive(false);
         //MyPlayer.clip = WeaponChange;
         //MyPlayer.Play();
-        SaveScript.HaveKnife = false;
+         SaveScript.HaveKnife = false;
         SaveScript.HaveAxe = true;
+       SaveScript.HaveGun = false;
+       SaveScript.HaveCrossBow = false;
     }
 
     public void AssignGun()
@@ -203,13 +249,56 @@ public class Inventory : MonoBehaviour
         PlayerArms.gameObject.SetActive(true);
         Gun.gameObject.SetActive(true);
         Anim.SetBool("Melee", false);
-        MyPlayer.clip = GunShot;
-        MyPlayer.Play();
+        Axe.gameObject.SetActive(false);
+        Knife.gameObject.SetActive(false);
+        CrossBow.gameObject.SetActive(false);
+        
+        // MyPlayer.clip = GunShot;
+        // MyPlayer.Play();
+        
+        SaveScript.HaveGun = true;
+       SaveScript.HaveCrossBow = false;
+       SaveScript.HaveKnife = false;
+        SaveScript.HaveAxe = false;
+
+        Gunlogo.gameObject.SetActive(true);
+        BulletAmt.gameObject.SetActive(true);
     }
+
+ public void AssignCrossbow()
+    {
+        PlayerArms.gameObject.SetActive(true);
+        CrossBow.gameObject.SetActive(true);
+        Anim.SetBool("Melee", false);
+        Axe.gameObject.SetActive(false);
+        Knife.gameObject.SetActive(false);
+        Gun.gameObject.SetActive(false);
+        // MyPlayer.clip = ArrowShot;
+        // MyPlayer.Play();
+        SaveScript.HaveKnife = false;
+        SaveScript.HaveAxe = false;
+        SaveScript.HaveGun = false;
+        SaveScript.HaveCrossBow = true;
+          BowUI.gameObject.SetActive(true);
+                BowAmt.gameObject.SetActive(true);
+    }
+
 
     public void WeaponsOff()
     {
         Axe.gameObject.SetActive(false);
         Knife.gameObject.SetActive(false);
+        Gun.gameObject.SetActive(false);
+        CrossBow.gameObject.SetActive(false);
+
     }
+
+    // public void AmmoRefill(){
+    //     SaveScript.BulletClips -= 1;
+    //     SaveScript.Bullets += 12;
+    //     if(SaveScript.Bullets > 12)
+    //     {
+    //         SaveScript.Bullets = 12;
+    //     }
+    // }
 }

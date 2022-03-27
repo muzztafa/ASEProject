@@ -6,7 +6,7 @@ using UnityEngine;
 public class SimpleShoot : MonoBehaviour
 {
     [Header("Prefab Refrences")]
-    public GameObject bulletPrefab;
+   // public GameObject bulletPrefab;
     public GameObject casingPrefab;
     public GameObject muzzleFlashPrefab;
 
@@ -35,8 +35,12 @@ public class SimpleShoot : MonoBehaviour
         //If you want a different input, change it here
         if (Input.GetButtonDown("Fire1"))
         {
-            //Calls animation on the gun that has the relevant animation events that will fire
+            if(SaveScript.Bullets > 0)
+            {
+//Calls animation on the gun that has the relevant animation events that will fire
             gunAnimator.SetTrigger("Fire");
+            }
+            
         }
     }
 
@@ -54,12 +58,9 @@ public class SimpleShoot : MonoBehaviour
             Destroy(tempFlash, destroyTimer);
         }
 
-        //cancels if there's no bullet prefeb
-        if (!bulletPrefab)
-        { return; }
+   
 
         // Create a bullet and add force on it in direction of the barrel
-        Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation).GetComponent<Rigidbody>().AddForce(barrelLocation.forward * shotPower);
 
     }
 
