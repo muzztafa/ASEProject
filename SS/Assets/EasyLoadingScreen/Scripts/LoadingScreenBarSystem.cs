@@ -31,6 +31,11 @@ public class LoadingScreenBarSystem : MonoBehaviour {
         MenuScreen.gameObject.SetActive(false);
     }
 
+    public void NewGame()
+    {
+        SaveScript.NewGame = true;
+    }
+
     // Used to try. Delete the comment lines (25 and 36)
     /*
     public void Update()

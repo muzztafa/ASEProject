@@ -30,6 +30,29 @@ public class SaveScript : MonoBehaviour
     public static int reward = 0;
     public static int Bullets = 30;
     public static int Arrows = 4;
+    public static bool NewGame = false;
+
+    private void Start(){
+        if (NewGame == true){
+            PlayerHealth = 100; // This variable will be used as Player Health
+            HealthChanged = false; // This variable is refered if health of the player is updated
+            BatteryPower = 1.0f; // This is the initial value of Battery Power
+            FlashLightOn = false; // Initally the Flashlight will be off.
+            NightVisionLightOn = false; // Initally the night vision will be off.    
+            knife = false; // This variable is to check if knife is been picked up or not
+            axe = false; // This variable is to check if axe is been picked up or not
+            gun = false; // This variable is to check if gun is been picked up or not
+            Apples = 0; // This variable is to check how many apples are picked.
+            crossbow = false;
+            HaveKnife = false;
+            HaveAxe = false;
+            HaveGun = false;
+            HaveCrossBow = false;
+            reward = 0;
+            Bullets = 30;
+            Arrows = 4;
+        }
+    }
 
     /*public static bool Knife = false;
     public static bool Gun = false;

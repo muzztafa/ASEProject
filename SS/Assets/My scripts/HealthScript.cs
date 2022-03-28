@@ -10,10 +10,12 @@ using UnityEngine.UI;
 public class HealthScript : MonoBehaviour
 {
     [SerializeField] Text HealthText;
+    [SerializeField] GameObject DeathPanel;
     
     // Start is called before the first frame update
     void Start()
     {
+        DeathPanel.gameObject.SetActive(false);
         SaveScript.HealthChanged = false;
         HealthText.text = SaveScript.PlayerHealth + "%";    // Set the inital value of the health
     }
@@ -23,5 +25,10 @@ public class HealthScript : MonoBehaviour
     {
                        
         HealthText.text = SaveScript.PlayerHealth + "%"; // It will set the value of the health if updated in the screen
+
+        if(SaveScript.PlayerHealth <= 0f){
+            SaveScript.PlayerHealth = 0;
+            DeathPanel.gameObject.SetActive(true);
+        }
     }
 }
