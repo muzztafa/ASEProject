@@ -248,7 +248,7 @@ public class Inventory : MonoBehaviour
     {
         PlayerArms.gameObject.SetActive(true);
         Gun.gameObject.SetActive(true);
-        Anim.SetBool("Melee", false);
+        Anim.SetBool("Melee", true);
         Axe.gameObject.SetActive(false);
         Knife.gameObject.SetActive(false);
         CrossBow.gameObject.SetActive(false);
@@ -269,7 +269,7 @@ public class Inventory : MonoBehaviour
     {
         PlayerArms.gameObject.SetActive(true);
         CrossBow.gameObject.SetActive(true);
-        Anim.SetBool("Melee", false);
+        Anim.SetBool("Melee", true);
         Axe.gameObject.SetActive(false);
         Knife.gameObject.SetActive(false);
         Gun.gameObject.SetActive(false);

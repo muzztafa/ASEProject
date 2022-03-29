@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.Windows.Speech;
+using UnityEngine.UI;
 public class PlayerAttacks : MonoBehaviour
 {
 
@@ -17,24 +18,29 @@ public class PlayerAttacks : MonoBehaviour
     [SerializeField] float AttackRefill = 1;
     [SerializeField] GameObject Crosshair;
     [SerializeField] GameObject GunCrossHair;
-
+    public GameObject arrowPrefab;
     private AudioSource MyPlayer;
+    public Transform arrowLocation;
+    public float shotPower = 1000f;
     [SerializeField] AudioClip GunShotSound;
     [SerializeField] AudioClip ArrowShotSound;
-             
+    [SerializeField] Text BowAmt;
     Dictionary<string, Action> keywordAction = new Dictionary<string, Action>();
     KeywordRecognizer keywordRecognizer;
-    
     void Start()
     {
         Anim = GetComponent<Animator>();
         AttackStamina = MaxAttackStamina;
         Crosshair.gameObject.SetActive(false);
         GunCrossHair.gameObject.SetActive(false);
+        /*if (arrowLocation == null)
+            arrowLocation = transform;*/
         keywordAction.Add("shoot", shoot) ;
-        keywordRecognizer = new KeywordRecognizer(keywordAction.Keys.ToArray()); 
+        keywordAction.Add("shooot", shoot);
+        keywordAction.Add("shoott", shoot);
+        keywordAction.Add("shuut", shoot);
+        keywordRecognizer = new KeywordRecognizer(keywordAction.Keys.ToArray());
         keywordRecognizer.OnPhraseRecognized += OnKeywordsRecognized;
-        
         MyPlayer = GetComponent<AudioSource>();
         keywordRecognizer.Start();
     }
@@ -47,10 +53,20 @@ public class PlayerAttacks : MonoBehaviour
              
     void shoot()
     {
-        Anim.SetTrigger("KnifeLMB");
+        Debug.Log("HI");
+        Update();
+            if (SaveScript.Arrows >= 0)
+            {
+            //Debug.Log("Power : " + shotPower);
+                Instantiate(arrowPrefab, arrowLocation.position, arrowLocation.rotation).GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shotPower);
+                SaveScript.Arrows -= 1;
+                BowAmt.text = SaveScript.Arrows + "";
+        }
+        //Anim.setTrigger("");
+        /*Anim.SetTrigger("KnifeLMB");
         AttackStamina -= AttackDrain;
-        
-        // Anim.SetBool("ShootGun", true)
+        Instantiate(arrowPrefab, arrowLocation.position, arrowLocation.rotation).GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shotPower);
+        */// Anim.SetBool("ShootGun", true)
         // Debug.Log("Hi Shoot");
         // if(SaveScript.Arrows > 0)
         //    {
@@ -146,7 +162,7 @@ public class PlayerAttacks : MonoBehaviour
              {
                 Crosshair.gameObject.SetActive(true);
 
-                if(Input.GetKeyDown(KeyCode.Mouse0))
+                /*if(Input.GetKeyDown(KeyCode.Mouse0))
                 {
                     if(SaveScript.Arrows > 0)
                      {
@@ -155,16 +171,16 @@ public class PlayerAttacks : MonoBehaviour
                      }
                      
                    
-                 }
+                 }*/
 
              }
              else
              {
                 Crosshair.gameObject.SetActive(false);
-             }   
+             }
+
             
-            
-        
+
 
         }
     }

@@ -7,7 +7,7 @@ namespace Nokobot.Assets.Crossbow
         public GameObject arrowPrefab;
         public Transform arrowLocation;
 
-        public float shotPower = 100f;
+        public float shotPower = 1000f;
 
         void Start()
         {
@@ -26,5 +26,6 @@ namespace Nokobot.Assets.Crossbow
                 }
             }
         }
+
     }
 }
