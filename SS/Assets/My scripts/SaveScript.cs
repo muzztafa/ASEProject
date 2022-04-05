@@ -31,6 +31,7 @@ public class SaveScript : MonoBehaviour
     public static int Bullets = 30;
     public static int Arrows = 4;
     public static bool NewGame = false;
+    public static int activeG = 2;
 
     private void Start(){
         if (NewGame == true){
@@ -51,6 +52,7 @@ public class SaveScript : MonoBehaviour
             reward = 0;
             Bullets = 30;
             Arrows = 4;
+            activeG = 2;
         }
     }
 

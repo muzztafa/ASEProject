@@ -21,7 +21,7 @@ public class PlayerAttacks : MonoBehaviour
     public GameObject arrowPrefab;
     private AudioSource MyPlayer;
     public Transform arrowLocation;
-    public float shotPower = 1000f;
+    public float shotPower = 500f;
     [SerializeField] AudioClip GunShotSound;
     [SerializeField] AudioClip ArrowShotSound;
     [SerializeField] Text BowAmt;
@@ -51,29 +51,27 @@ public class PlayerAttacks : MonoBehaviour
                  keywordAction[Speech.text].Invoke();
              }
              
+    //          private void OnTriggerEnter(Collider other){
+    //     if(other.gameObject.CompareTag("Ghost"))
+    //     {
+    //         if (HitActive == false)
+    //         {
+    //             HitActive = true;
+    //             SaveScript.PlayerHealth -= WeaponDamage;
+    //             SaveScript.HealthChanged = true;
+    //         }
+    //     }
+    // }
     void shoot()
     {
         Debug.Log("HI");
-        Update();
             if (SaveScript.Arrows >= 0)
             {
-            //Debug.Log("Power : " + shotPower);
                 Instantiate(arrowPrefab, arrowLocation.position, arrowLocation.rotation).GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shotPower);
                 SaveScript.Arrows -= 1;
                 BowAmt.text = SaveScript.Arrows + "";
-        }
-        //Anim.setTrigger("");
-        /*Anim.SetTrigger("KnifeLMB");
-        AttackStamina -= AttackDrain;
-        Instantiate(arrowPrefab, arrowLocation.position, arrowLocation.rotation).GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shotPower);
-        */// Anim.SetBool("ShootGun", true)
-        // Debug.Log("Hi Shoot");
-        // if(SaveScript.Arrows > 0)
-        //    {
-
-        //              MyPlayer.clip = ArrowShotSound;
-        //              MyPlayer.Play();
-        // }
+            }
+        
     }
     void Update()
     {

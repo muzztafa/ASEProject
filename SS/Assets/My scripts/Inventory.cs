@@ -190,18 +190,18 @@ public class Inventory : MonoBehaviour
             gunImage.gameObject.SetActive(false);
             gunButton.gameObject.SetActive(false);
         }
-        if (SaveScript.reward > 50)
-        {
+        // if (SaveScript.reward > 50)
+        // {
             SaveScript.crossbow = true;
             crossbowImage.gameObject.SetActive(true);
             crossbowButton.gameObject.SetActive(true);
-        }
-        else
-        {
-            SaveScript.crossbow = false;
-            crossbowImage.gameObject.SetActive(false);
-            crossbowButton.gameObject.SetActive(false);
-        }
+        // }
+        // else
+        // {
+        //     SaveScript.crossbow = false;
+        //     crossbowImage.gameObject.SetActive(false);
+        //     crossbowButton.gameObject.SetActive(false);
+        // }
     }
     public void updateHealth()
     {

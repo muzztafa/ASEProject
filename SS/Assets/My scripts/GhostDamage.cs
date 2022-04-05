@@ -33,6 +33,7 @@ public class GhostDamage : MonoBehaviour
                 HasDied = true;
                 Destroy(GhostObject, 25f);
                 SaveScript.reward += 50;
+                SaveScript.activeG -=1;
             }
         }
         
@@ -61,6 +62,13 @@ public class GhostDamage : MonoBehaviour
                 BloodSplatAxe.gameObject.SetActive(true);
             }
         }
-
+        if (other.gameObject.CompareTag("Arrow"))
+        {
+            Anim.SetTrigger("Death");
+            Anim.SetBool("IsDead", true);
+            HasDied = true;
+            Destroy(GhostObject, 25f);
+            SaveScript.reward += 50;
+        }
     }
 }

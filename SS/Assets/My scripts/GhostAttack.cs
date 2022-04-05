@@ -106,6 +106,10 @@ public class GhostAttack : MonoBehaviour
         {
             Anim.SetTrigger("SmallReact");
         }
+        if (other.gameObject.CompareTag("Arrow"))
+        {
+            Anim.SetTrigger("SmallReact");
+        }
     }
     IEnumerator TimedCheck()
     {
