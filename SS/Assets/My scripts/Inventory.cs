@@ -15,6 +15,7 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] GameObject PlayerArms;
     [SerializeField] GameObject Knife;
+    [SerializeField] GameObject MagicSword;
     [SerializeField] GameObject Axe;
     [SerializeField] GameObject Gun;
     [SerializeField] GameObject CrossBow;
@@ -40,6 +41,8 @@ public class Inventory : MonoBehaviour
     //weapons
     [SerializeField] GameObject knifeImage;
     [SerializeField] GameObject knifeButton;
+    [SerializeField] GameObject MagicSwordImage;
+    [SerializeField] GameObject MagicSwordButton;
     [SerializeField] GameObject axeImage;
     [SerializeField] GameObject axeButton;
     [SerializeField] GameObject gunImage;
@@ -76,6 +79,8 @@ public class Inventory : MonoBehaviour
         appleButton5.gameObject.SetActive(false);
         knifeImage.gameObject.SetActive(false);
         knifeButton.gameObject.SetActive(false);
+        MagicSwordImage.gameObject.SetActive(false);
+        MagicSwordButton.gameObject.SetActive(false);
         axeButton.gameObject.SetActive(false);
         axeImage.gameObject.SetActive(false);
         gunImage.gameObject.SetActive(false);
@@ -96,6 +101,7 @@ public class Inventory : MonoBehaviour
                 Time.timeScale = 0f;
                 Cursor.visible = true;
                 SaveScript.HaveKnife = false;
+                SaveScript.HaveMagicSword = false;
                 SaveScript.HaveAxe = false;
                 SaveScript.HaveCrossBow = false;
                 SaveScript.HaveGun = false;
@@ -170,6 +176,15 @@ public class Inventory : MonoBehaviour
             knifeImage.gameObject.SetActive(false);
             knifeButton.gameObject.SetActive(false);
         }
+        if(SaveScript.knife == true)
+        {
+            MagicSwordImage.gameObject.SetActive(true);
+            MagicSwordButton.gameObject.SetActive(true);
+        }else if(SaveScript.knife == false)
+        {
+            MagicSwordImage.gameObject.SetActive(false);
+            MagicSwordButton.gameObject.SetActive(false);
+        }
         if (SaveScript.axe == true)
         {
             axeImage.gameObject.SetActive(true);
@@ -190,12 +205,17 @@ public class Inventory : MonoBehaviour
             gunImage.gameObject.SetActive(false);
             gunButton.gameObject.SetActive(false);
         }
-        // if (SaveScript.reward > 50)
-        // {
-            SaveScript.crossbow = true;
-            crossbowImage.gameObject.SetActive(true);
-            crossbowButton.gameObject.SetActive(true);
-        // }
+         if (((SaveScript.reward % 100)==0) && SaveScript.reward>0)
+        {
+            SaveScript.MagicSword = true;
+            MagicSwordImage.gameObject.SetActive(true);
+            MagicSwordButton.gameObject.SetActive(true);
+        }else if ((SaveScript.reward%100)!=0 || SaveScript.reward==0)
+        {
+            SaveScript.MagicSword = false;
+            MagicSwordImage.gameObject.SetActive(false);
+            MagicSwordButton.gameObject.SetActive(false);
+        }
         // else
         // {
         //     SaveScript.crossbow = false;
@@ -217,16 +237,37 @@ public class Inventory : MonoBehaviour
         PlayerArms.gameObject.SetActive(true);
         Knife.gameObject.SetActive(true);
         Anim.SetBool("Melee", true);
-        Gun.gameObject.SetActive(false);
+       // Gun.gameObject.SetActive(false);
         Axe.gameObject.SetActive(false);
-        CrossBow.gameObject.SetActive(false);
+        MagicSword.gameObject.SetActive(false);
+        //CrossBow.gameObject.SetActive(false);
 
         //MyPlayer.clip = WeaponChange;
         //MyPlayer.Play();
         SaveScript.HaveKnife = true;
         SaveScript.HaveAxe = false;
-        SaveScript.HaveGun = false;
-        SaveScript.HaveCrossBow = false;
+       // SaveScript.HaveGun = false;
+       // SaveScript.HaveCrossBow = false;
+        SaveScript.HaveMagicSword =false;
+    }
+
+    public void AssignMagicSword()
+    {
+        PlayerArms.gameObject.SetActive(true);
+        MagicSword.gameObject.SetActive(true);
+        Anim.SetBool("Melee", true);
+       // Gun.gameObject.SetActive(false);
+       Knife.gameObject.SetActive(false);
+       Axe.gameObject.SetActive(false);
+        //CrossBow.gameObject.SetActive(false);
+
+        //MyPlayer.clip = WeaponChange;
+        //MyPlayer.Play();
+        SaveScript.HaveMagicSword = true;
+        SaveScript.HaveKnife = false;
+        SaveScript.HaveAxe = false;
+       // SaveScript.HaveGun = false;
+        //SaveScript.HaveCrossBow = false;
     }
 
     public void AssignAxe()
@@ -234,60 +275,64 @@ public class Inventory : MonoBehaviour
         PlayerArms.gameObject.SetActive(true);
         Axe.gameObject.SetActive(true);
         Anim.SetBool("Melee", true);
-        Gun.gameObject.SetActive(false);
+        //Gun.gameObject.SetActive(false);
         Knife.gameObject.SetActive(false);
-        CrossBow.gameObject.SetActive(false);
+        MagicSword.gameObject.SetActive(false);
+        //CrossBow.gameObject.SetActive(false);
         //MyPlayer.clip = WeaponChange;
         //MyPlayer.Play();
-         SaveScript.HaveKnife = false;
-        SaveScript.HaveAxe = true;
-       SaveScript.HaveGun = false;
-       SaveScript.HaveCrossBow = false;
-    }
-
-    public void AssignGun()
-    {
-        PlayerArms.gameObject.SetActive(true);
-        Gun.gameObject.SetActive(true);
-        Anim.SetBool("Melee", true);
-        Axe.gameObject.SetActive(false);
-        Knife.gameObject.SetActive(false);
-        CrossBow.gameObject.SetActive(false);
-        
-        // MyPlayer.clip = GunShot;
-        // MyPlayer.Play();
-        
-        SaveScript.HaveGun = true;
-       SaveScript.HaveCrossBow = false;
-       SaveScript.HaveKnife = false;
-        SaveScript.HaveAxe = false;
-
-        Gunlogo.gameObject.SetActive(true);
-        BulletAmt.gameObject.SetActive(true);
-    }
-
- public void AssignCrossbow()
-    {
-        PlayerArms.gameObject.SetActive(true);
-        CrossBow.gameObject.SetActive(true);
-        Anim.SetBool("Melee", true);
-        Axe.gameObject.SetActive(false);
-        Knife.gameObject.SetActive(false);
-        Gun.gameObject.SetActive(false);
-        // MyPlayer.clip = ArrowShot;
-        // MyPlayer.Play();
         SaveScript.HaveKnife = false;
-        SaveScript.HaveAxe = false;
-        SaveScript.HaveGun = false;
-        SaveScript.HaveCrossBow = true;
-          BowUI.gameObject.SetActive(true);
-                BowAmt.gameObject.SetActive(true);
+        SaveScript.HaveAxe = true;
+       //SaveScript.HaveGun = false;
+       //SaveScript.HaveCrossBow = false;
+        SaveScript.HaveMagicSword =false;
+    
     }
 
+    // public void AssignGun()
+    // {
+    //     PlayerArms.gameObject.SetActive(true);
+    //     Gun.gameObject.SetActive(true);
+    //     Anim.SetBool("Melee", true);
+    //     Axe.gameObject.SetActive(false);
+    //     Knife.gameObject.SetActive(false);
+    //     CrossBow.gameObject.SetActive(false);
+        
+    //     // MyPlayer.clip = GunShot;
+    //     // MyPlayer.Play();
+        
+    //     SaveScript.HaveGun = true;
+    //    SaveScript.HaveCrossBow = false;
+    //    SaveScript.HaveKnife = false;
+    //     SaveScript.HaveAxe = false;
+    //     SaveScript.HaveMagicSword =false;
+
+    //     Gunlogo.gameObject.SetActive(true);
+    //     BulletAmt.gameObject.SetActive(true);
+    // }
+
+//  public void AssignCrossbow()
+//     {
+//         PlayerArms.gameObject.SetActive(true);
+//         CrossBow.gameObject.SetActive(true);
+//         Anim.SetBool("Melee", true);
+//         Axe.gameObject.SetActive(false);
+//         Knife.gameObject.SetActive(false);
+//         Gun.gameObject.SetActive(false);
+//         // MyPlayer.clip = ArrowShot;
+//         // MyPlayer.Play();
+//         SaveScript.HaveKnife = false;
+//         SaveScript.HaveAxe = false;
+//         SaveScript.HaveGun = false;
+//         SaveScript.HaveCrossBow = true;
+//           BowUI.gameObject.SetActive(true);
+//                 BowAmt.gameObject.SetActive(true);
+//     }
 
     public void WeaponsOff()
     {
         Axe.gameObject.SetActive(false);
+        MagicSword.gameObject.SetActive(false);
         Knife.gameObject.SetActive(false);
         Gun.gameObject.SetActive(false);
         CrossBow.gameObject.SetActive(false);

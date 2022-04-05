@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GhostDamage : MonoBehaviour
 {
-    [SerializeField] int GhostHealth = 100;
+    public int GhostHealth = 100;
     private AudioSource MyPlayer;
     private bool HasDied = false;
     private Animator Anim;
@@ -62,13 +62,11 @@ public class GhostDamage : MonoBehaviour
                 BloodSplatAxe.gameObject.SetActive(true);
             }
         }
-        if (other.gameObject.CompareTag("Arrow"))
+        if (other.gameObject.CompareTag("MagicSword"))
         {
-            Anim.SetTrigger("Death");
-            Anim.SetBool("IsDead", true);
-            HasDied = true;
-            Destroy(GhostObject, 25f);
-            SaveScript.reward += 50;
+           GhostHealth = 0;
+           SaveScript.MagicSword=false;
+           MyPlayer.Play();
         }
     }
 }

@@ -3,7 +3,41 @@ guid: 57b869095b77eee4a83c33b56658189d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - InventoryMenu: {instanceID: 0}
+  - GunShot: {instanceID: 0}
+  - ArrowShot: {instanceID: 0}
+  - PlayerArms: {instanceID: 0}
+  - Knife: {instanceID: 0}
+  - MagicSword: {fileID: 1777591198242490, guid: 3329101817c67e24fb70ba97b6168054, type: 3}
+  - Axe: {instanceID: 0}
+  - Gun: {instanceID: 0}
+  - CrossBow: {instanceID: 0}
+  - Anim: {instanceID: 0}
+  - Gunlogo: {instanceID: 0}
+  - BulletAmt: {instanceID: 0}
+  - BowUI: {instanceID: 0}
+  - BowAmt: {instanceID: 0}
+  - appleImage: {instanceID: 0}
+  - appleButton: {instanceID: 0}
+  - appleImage1: {instanceID: 0}
+  - appleButton1: {instanceID: 0}
+  - appleImage2: {instanceID: 0}
+  - appleButton2: {instanceID: 0}
+  - appleImage3: {instanceID: 0}
+  - appleButton3: {instanceID: 0}
+  - appleImage4: {instanceID: 0}
+  - appleButton4: {instanceID: 0}
+  - appleImage5: {instanceID: 0}
+  - appleButton5: {instanceID: 0}
+  - knifeImage: {instanceID: 0}
+  - knifeButton: {instanceID: 0}
+  - axeImage: {instanceID: 0}
+  - axeButton: {instanceID: 0}
+  - gunImage: {instanceID: 0}
+  - gunButton: {instanceID: 0}
+  - crossbowImage: {instanceID: 0}
+  - crossbowButton: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

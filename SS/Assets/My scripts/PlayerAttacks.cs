@@ -36,9 +36,8 @@ public class PlayerAttacks : MonoBehaviour
         /*if (arrowLocation == null)
             arrowLocation = transform;*/
         keywordAction.Add("shoot", shoot) ;
-        keywordAction.Add("shooot", shoot);
-        keywordAction.Add("shoott", shoot);
-        keywordAction.Add("shuut", shoot);
+        keywordAction.Add("Shooot", shoot);
+        keywordAction.Add("Shot", shoot);
         keywordRecognizer = new KeywordRecognizer(keywordAction.Keys.ToArray());
         keywordRecognizer.OnPhraseRecognized += OnKeywordsRecognized;
         MyPlayer = GetComponent<AudioSource>();
@@ -64,12 +63,14 @@ public class PlayerAttacks : MonoBehaviour
     // }
     void shoot()
     {
-        Debug.Log("HI");
-            if (SaveScript.Arrows >= 0)
+        //Debug.Log("HI");
+            if (SaveScript.HaveMagicSword == true)
             {
-                Instantiate(arrowPrefab, arrowLocation.position, arrowLocation.rotation).GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shotPower);
-                SaveScript.Arrows -= 1;
-                BowAmt.text = SaveScript.Arrows + "";
+                // Instantiate(arrowPrefab, arrowLocation.position, arrowLocation.rotation).GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shotPower);
+                // SaveScript.Arrows -= 1;
+                // BowAmt.text = SaveScript.Arrows + "";
+                Anim.SetTrigger("KnifeRMB");
+
             }
         
     }
@@ -117,8 +118,17 @@ public class PlayerAttacks : MonoBehaviour
                 }
 
             }
-                       // 
-
+            //            // 
+            // if (SaveScript.HaveMagicSword == true)
+            // {
+            //     if (Input.GetKeyDown(KeyCode.Mouse0))
+            //     {
+            //         Anim.SetTrigger("KnifeRMB");
+            //         AttackStamina -= AttackDrain;
+            //     }
+                
+            // }
+             
 
             if (SaveScript.HaveGun == true)
             {

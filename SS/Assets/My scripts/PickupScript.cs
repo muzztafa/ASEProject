@@ -54,6 +54,19 @@ public class PickupScript : MonoBehaviour
                     
                 }
             }
+            // else if (hit.transform.tag == "MagicSword") // this will check if an knife is in front, if yes than user will see a pickup dialog box and if user presses E than the knife will be deleted from game scene flag of knife will be set to true as weapon is picked up
+            // {
+            //     canSeePickup = true;
+            //     if (Input.GetKeyDown(KeyCode.E))
+            //     {
+            //         if (!SaveScript.MagicSword)
+            //         {
+            //             Destroy(hit.transform.gameObject);
+            //             SaveScript.MagicSword = true;
+            //         }
+                    
+            //     }
+            // }
             else if (hit.transform.tag == "Axe") // this will check if an axe is in front, if yes than user will see a pickup dialog box and if user presses E than the axe will be deleted from game scene flag of axe will be set to true  as weapon is picked up
             {
                 canSeePickup = true;
