@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class ActiveGhost : MonoBehaviour
 {
     [SerializeField] Text ghost;
-    [SerializeField] GameObject DeathPanel;
+    [SerializeField] GameObject WinPanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +16,9 @@ public class ActiveGhost : MonoBehaviour
     void Update()
     {
         ghost.text = ""+SaveScript.activeG; // It will set the value of the active ghost if updated in the scree
-        if(SaveScript.activeG <= 0){
+        if(SaveScript.activeG < 1){
             SaveScript.activeG = 0;
-            DeathPanel.gameObject.SetActive(true);
+            WinPanel.gameObject.SetActive(true);
         }
     }
 }
